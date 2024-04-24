@@ -22,7 +22,7 @@ def analyze():
     # Perform your analysis on the image here
     # For example, you can use OpenCV or PIL to analyze the image
     # extract EXIF data
-    img = Image.open('image0.jpeg')
+    img = Image.open('JPCY7244.JPG')
     exif = { ExifTags.TAGS[k]: v for k, v in img._getexif().items() if k in ExifTags.TAGS }
     
     exportString = ""
