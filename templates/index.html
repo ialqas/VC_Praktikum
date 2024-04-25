@@ -2,36 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload and Analyze Picture</title>
+    <title>Home</title>
 </head>
 <body>
-    <h1>Upload and Analyze Picture</h1>
-    <form id="uploadForm" action="/analyze" method="post" enctype="multipart/form-data">
-        <input type="file" name="picture" id="picture" accept="image/*">
-        <button type="button" onclick="analyzePicture()">Analyze</button>
+    <h1>Upload File</h1>
+
+    <form method='POST' enctype='multipart/form-data'>
+        {{form.hidden_tag()}}
+        {{form.file()}}
+        {{form.submit()}}
     </form>
-
-    <div id="resultContainer" style="display: none;">
-        <h2>Analysis Result</h2>
-        <div id="analysisResult1"></div>
-        <div id="imageResult"></div>
-    </div>
-
-    <script>
-        function analyzePicture() {
-            var formData = new FormData(document.getElementById('uploadForm'));
-            fetch('/analyze', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('analysisResult1').textContent =data;
-                document.getElementById('resultContainer').style.display = 'block';
-            })
-            .catch(error => console.error('Error:', error));
-        }
-    </script>
 </body>
 </html>
