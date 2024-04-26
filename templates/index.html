@@ -7,12 +7,26 @@
     <title>Home</title>
 </head>
 <body>
+    <h1>Analysis Result</h1>
+    <style>
+        img {
+            max-width: 500px;
+            max-height: 500px;
+        }
+    </style>
+
+    <h2>EXIF Data:</h2>
+    <pre>{{ exif_data }}</pre>
+
+    <h2>Analyzed Image:</h2>
+    <img src="{{ url_for('get_image', image_path=image_path) }}" alt="Analyzed Image">
+
     <h1>Upload File</h1>
 
     <form method='POST' enctype='multipart/form-data'>
-        {{form.hidden_tag()}}
-        {{form.file()}}
-        {{form.submit()}}
+        {{ form.hidden_tag() }}
+        {{ form.file() }}
+        {{ form.submit() }}
     </form>
 </body>
 </html>
