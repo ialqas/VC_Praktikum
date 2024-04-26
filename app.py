@@ -44,8 +44,11 @@ def analyse():
     
     img_black_white = img.convert('1')
     
+    img_black_white.save('static/files/analyseFile.jpg')
     
-    img_black_white.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static/files/analyseFile.jpg'))
+    
+    
+    #img_black_white.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static/files/analyseFile.jpg'))
 
     return exportString, 'static/files/analyseFile.jpg'
 
