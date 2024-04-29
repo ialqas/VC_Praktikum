@@ -1,8 +1,9 @@
 import cv2 
 import numpy as np 
+
   
 # Load the image 
-img = cv2.imread('picture_Android.jpg') 
+img = cv2.imread('objects-png-format.png') 
   
 # Convert the image to grayscale 
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
@@ -12,8 +13,7 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 ret, thresh = cv2.threshold( 
     gray, 0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU) 
 
-#resize threshold and make it bigger
-thresh = cv2.resize(thresh, (0,0), fx=10, fy=10)  
+
 
 # Find the contours of the objects in the image 
 contours, hierarchy = cv2.findContours( 
