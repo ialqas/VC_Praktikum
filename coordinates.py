@@ -8,6 +8,6 @@ coords_2 = (8.6607032,
 
 print(geopy.distance.geodesic(coords_1, coords_2).meters)
 
-exif_data, analyzed_image = analyse()
+#exif_data, analyzed_image = analyse()
 
-print(exif_data)
+#print(exif_data)
