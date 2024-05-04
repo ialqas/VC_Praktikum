@@ -35,7 +35,7 @@ def analyse():
     
     img = Image.open('static/files/analyseFile.jpg')
     #changed getexif() method to without underscore
-    exif = { ExifTags.TAGS[k]: v for k, v in img.getexif().items() if k in ExifTags.TAGS }
+    exif = { ExifTags.TAGS[k]: v for k, v in img._getexif().items() if k in ExifTags.TAGS }
     
     exportString = ""
     
