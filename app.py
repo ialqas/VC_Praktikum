@@ -43,9 +43,9 @@ def analyse():
             exportString += f"{i}: {exif[i]}\n "
             
     
-    img_black_white = img.convert('1')
+    #img_black_white = img.convert('1')
     
-    img_black_white.save('static/files/analyseFile.jpg')
+    #img_black_white.save('static/files/analyseFile.jpg')
     
     
     
