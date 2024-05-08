@@ -1,8 +1,19 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import localFont from "@next/font/local"
 
 const inter = Inter({ subsets: ["latin"] });
+
+const coolvetica = localFont({
+  src: [
+    {
+      path: "../../public/fonts/coolvetica_rg.otf",
+      weight: "400"
+    }
+  ],
+  variable: "--font-coolvetica"
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
