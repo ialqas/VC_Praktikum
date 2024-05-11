@@ -5,15 +5,6 @@ import localFont from "@next/font/local"
 
 const inter = Inter({ subsets: ["latin"] });
 
-const coolvetica = localFont({
-  src: [
-    {
-      path: "../../public/fonts/coolvetica_rg.otf",
-      weight: "400"
-    }
-  ],
-  variable: "--font-coolvetica"
-})
 
 export const metadata: Metadata = {
   title: "Create Next App",
