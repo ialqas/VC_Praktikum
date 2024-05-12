@@ -7,7 +7,7 @@ function stepWindow({step, setStep}: {step: number, setStep: Function}) {
         case 1: return <FirstStep setStep={setStep}/>;
         case 2: return <SecondStep setStep={setStep}/>;
         case 3: return <ThirdStep setStep={setStep}/>;
-        default: return <p>Done</p>;
+        default: return <p>Welcome to the website</p>;
         }
 }   
 

@@ -6,7 +6,11 @@ CORS(app)
 
 @app.route('/api/home', methods=["GET"])
 def return_home():
-    return jsonify({"message": "Welcome to the home page"})
+    return jsonify({"message": "My first simple request"})
+
+@app.route('/api/second', methods=["GET"])
+def return_second():
+    return jsonify({"message": "Hey, that worked!"})
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080) # remove debug=True for production, keep for development
