@@ -12,9 +12,9 @@ async function requestData(setText: Function) {
 function SecondStep({setStep}: {setStep: Function}) {
     const [text, setText] = useState("Not yet pressed");
     return (
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center items-center space-y-6">
             <h1>Second Step, make API call on button press</h1>
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center space-x-6">
                 <button className="relative flex h-[50px] w-40 items-center justify-center bg-emerald-400 border-double border-4 hover:bg-cyan-600" onClick={() => {requestData(setText)}}>Make API Call</button>
                 <div>{text}</div>
             </div>
