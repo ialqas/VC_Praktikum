@@ -1,12 +1,26 @@
 
 import { useState } from "react";
 
+async function findAddress(city: string, street: string, housenumber: string, postalCode: string, setResp: Function) {
+    const response = await fetch('http://localhost:8080/api/house/coordinates', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({city: city, street: street, housenumber: housenumber, postalCode: postalCode})
+      });
+    const data = await response.json();
+    setResp(data);
+}
+
 
 function FirstStep({setStep}: {setStep: Function}) {
     const [city, setCity] = useState("");
     const [street, setStreet] = useState("");
     const [housenumber, setHousenumber] = useState("");
     const [postalCode, setPostalCode] = useState("");
+    const [resp, setResp]  = useState([]);
 
     return (
         <div className="flex flex-col justify-center items-center space-y-6">

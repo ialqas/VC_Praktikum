@@ -18,6 +18,14 @@ def return_third():
     number = int(request.args.get('number'))
     return jsonify({"name": name, "number": number*2})
 
+@app.route("/api/house/coordinates", methods=["POST"])
+def return_coordinates():
+    city = request.form.get('city')
+    street = request.form.get('street')
+    number = request.form.get('number')
+    postal_code = request.form.get('postal_code')
+    return jsonify({"coordinates": data})
+
 if __name__ == '__main__':
     app.run(debug=True, port=8080) # remove debug=True for production, keep for development
 
