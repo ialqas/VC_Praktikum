@@ -1,11 +1,13 @@
 import FirstStep from "./[FirstStep]/FirstStep";
 import SecondStep from "./[SecondStep]/SecondStep";
 import ThirdStep from "./[ThirdStep]/ThirdStep";
+import { useState } from "react";
 
 function stepWindow({step, setStep}: {step: number, setStep: Function}) {
+    const [coords, setCoords] = useState(["",""]);
     switch(step) {
-        case 1: return <FirstStep setStep={setStep}/>;
-        case 2: return <SecondStep setStep={setStep}/>;
+        case 1: return <FirstStep setStep={setStep} setCoords={setCoords}/>;
+        case 2: return <SecondStep setStep={setStep} coords={coords}/>;
         case 3: return <ThirdStep setStep={setStep}/>;
         case 4: return <p>Done</p>;
         default: return (
