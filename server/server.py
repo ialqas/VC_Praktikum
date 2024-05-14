@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import nominatim_requests
+import osm_nominatim_requests
 #app instance
 app = Flask(__name__)
 CORS(app)
@@ -25,8 +25,15 @@ def return_coordinates():
     street = request.json.get('street')
     number = request.json.get('housenumber')
     postal_code = request.json.get('postalCode')
-    coordinates = nominatim_requests.get_location_by_address(street, number, postal_code, city)
+    coordinates = osm_nominatim_requests.get_location_by_address(street, number, postal_code, city)
     return jsonify({"lat": coordinates[0], "lon": coordinates[1]})
+
+@app.route("/api/address/nearbynodes", methods=["POST"])
+def return_nearby_nodes():
+    lat = request.json.get('lat')
+    lon = request.json.get('lon')
+    nodes = osm_nominatim_requests.get_nearby_nodes(lat, lon)
+    return jsonify({"nodes": nodes})
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080) # remove debug=True for production, keep for development
