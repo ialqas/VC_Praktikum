@@ -6,10 +6,11 @@ import { use, useState } from "react";
 function stepWindow({step, setStep}: {step: number, setStep: Function}) {
     const [coords, setCoords] = useState(["",""]);
     const [selectedMarkers, setSelectedMarkers] = useState([]);
+    const [houseWidth, setHouseWidth] = useState(0);
     switch(step) {
         case 1: return <FirstStep setStep={setStep} setCoords={setCoords}/>;
         case 2: return <SecondStep setStep={setStep} coords={coords} selectedMarkers={selectedMarkers} setSelectedMarkers={setSelectedMarkers}/>;
-        case 3: return <ThirdStep setStep={setStep} selectedMarkers={selectedMarkers}/>;
+        case 3: return <ThirdStep setStep={setStep} selectedMarkers={selectedMarkers} houseWidth={houseWidth} setHouseWidth={setHouseWidth}/>;
         case 4: return <p>Done</p>;
         default: return (
         <div className="flex flex-col justify-center items-center space-y-6">

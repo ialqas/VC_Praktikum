@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 
 async function requestData(name: string, number: number, setResp: Function) {
     const response = await fetch("http://localhost:8080/api/third?name=" + name + "&number=" + number);
@@ -7,14 +7,37 @@ async function requestData(name: string, number: number, setResp: Function) {
 
 }
 
-function ThirdStep({setStep, selectedMarkers}: {setStep: Function, selectedMarkers: string[][]}) {
-    const [name, setName] = useState("");
-    const [number, setNumber] = useState(0);
-    const [resp, setResp]  = useState([]);
+function ThirdStep({setStep, selectedMarkers, houseWidth, setHouseWidth}: {setStep: Function, selectedMarkers: string[][], houseWidth: number, setHouseWidth: Function}) {
+
+
+    useEffect(() => {
+        (async () => {
+            const response = await fetch("http://localhost:8080/api/address/housewidth", {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"                  
+                },
+                body: JSON.stringify({"marker1": {
+                    "lat": selectedMarkers[0][0],
+                    "lon": selectedMarkers[0][1]
+                },
+                "marker2": {
+                    "lat": selectedMarkers[1][0],
+                    "lon": selectedMarkers[1][1]
+                }})
+            });
+            const data = await response.json();
+            setHouseWidth(data.width);
+        })();
+    }, []);
+
+
+
     return (
             <div className="flex flex-col justify-center space-y-6">
-                <p>Your coordinates are {selectedMarkers[0]} and {selectedMarkers[1]}</p>
-                <p>Next step: Use Oli's Python script to calculate the distance between these coordinates</p>
+                <p>Upload Photo here</p>
+                <p>House width: {houseWidth} Meter (muss man hier nicht anzeigen, aber der Wert ist da)</p>
             </div>
     );
 }
