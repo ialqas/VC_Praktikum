@@ -7,13 +7,22 @@ async function requestData(name: string, number: number, setResp: Function) {
 
 }
 
-function ThirdStep({setStep}: {setStep: Function}) {
+function ThirdStep({setStep, selectedMarkers}: {setStep: Function, selectedMarkers: string[][]}) {
     const [name, setName] = useState("");
     const [number, setNumber] = useState(0);
     const [resp, setResp]  = useState([]);
     return (
             <div className="flex flex-col justify-center space-y-6">
-                <h1>Third Step, give Info to the API: Tell me your name and a number of your choice</h1>
+                <p>Your coordinates are {selectedMarkers[0]} and {selectedMarkers[1]}</p>
+                <p>Next step: Use Oli's Python script to calculate the distance between these coordinates</p>
+            </div>
+    );
+}
+
+export default ThirdStep;
+
+/*
+<h1>Third Step, give Info to the API: Tell me your name and a number of your choice</h1>
                 <div className="flex flex-row items-center space-x-6">
                     <input className="border-2 border-gray-500" type="text" placeholder="Name" onChange = {(event) => setName(event.target.value)}/>
                     <input className="border-2 border-gray-500" type="number" placeholder="Number" onChange = {(event) => setNumber(event.target.valueAsNumber)}/>
@@ -32,8 +41,4 @@ function ThirdStep({setStep}: {setStep: Function}) {
                     <span className="relative z-10">Next Step</span>
                     </button>
                 </div>
-            </div>
-    );
-}
-
-export default ThirdStep;
+                */
