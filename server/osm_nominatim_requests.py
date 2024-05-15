@@ -16,8 +16,6 @@ def get_location_by_address(street, housenumber, postal_code, city,):
     
 #print(get_location_by_address("Hochschulstraße", "1", "64289", "Darmstadt"))
 
-# TODO: Change request so that i only get nodes that are part of ways
-
 def get_nearby_nodes(lat, lon):
     api = overpy.Overpass()
     print("IN NOMIN", lat, lon)

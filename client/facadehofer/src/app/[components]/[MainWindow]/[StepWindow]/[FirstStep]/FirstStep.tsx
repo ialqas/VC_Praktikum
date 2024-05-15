@@ -16,7 +16,7 @@ async function findAddress(city: string, street: string, housenumber: string, po
     setCoords([data["lat"], data["lon"]]);
 }
 
-//TODO: USESTATE INITIAL VALUES + INPUT INITIAL VALUES ANPASSEN
+//TODO: BUTTON ZU SECOND STEP ERST CLICKABLE MACHEN WENN COORDINATES GEFUNDEN WURDEN
 
 function FirstStep({setStep, setCoords}: {setStep: Function, setCoords: Function}) {
     const [street, setStreet] = useState("Wenckstraße"); // Taunushöhe  33 65779   Kelkheim

@@ -10,7 +10,12 @@ function SecondStep({setStep, coords}: {setStep: Function, coords: string[]}) {
     const [markers, setMarkers] = useState([]);
     
     const customIcon = new Icon({
-        iconUrl: "https://cdn-icons-png.flaticon.com/512/107/107831.png",
+        iconUrl: require("./../../../../../../public/assets/icon.png"),
+        iconSize: [38,38]
+    });
+
+    const customIconClicked = new Icon({
+        iconUrl: require("./../../../../../../public/assets/icon_clicked.png"),
         iconSize: [38,38]
     });
 
@@ -25,7 +30,6 @@ function SecondStep({setStep, coords}: {setStep: Function, coords: string[]}) {
                 body: JSON.stringify({"lat": coords[0], "lon": coords[1]})           
             });
             const data = await response.json();
-            console.log(data.nodes);
             setMarkers(data.nodes);
         })();
     }, []);
@@ -41,7 +45,12 @@ function SecondStep({setStep, coords}: {setStep: Function, coords: string[]}) {
                 <MapContainer center={[Number(coords[0]), Number(coords[1])]} zoom={20} style={{height: "800px", width: "800px"}}>
                 <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' maxNativeZoom={19} maxZoom={23} url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
                 {markers.map((marker: any) => (
-                    <Marker position={marker.geocode}></Marker>
+                    <Marker position={marker.geocode} icon={customIcon} eventHandlers={{
+                        click: (e) => {
+                           icon={customIconClicked};
+                        }
+                    
+                    }}></Marker>
                 ))
                 }
 
