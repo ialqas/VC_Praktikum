@@ -51,7 +51,7 @@ function SecondStep({setStep, coords, selectedMarkers, setSelectedMarkers}: {set
                                 setSelectedMarkers(selectedMarkers.filter((item) => item.toString() !== marker.geocode.toString())); //remove marker from selectedMarkers
                             } else { //marker not selected
                                 if(selectedMarkers.length < 2) { //less than 2 markers selected
-                                    setSelectedMarkers([...selectedMarkers, marker.geocode]);
+                                    setSelectedMarkers([...selectedMarkers, marker.geocode]); //add marker to selectedMarkers
                                 } else { //2 markers selected
                                     setErrorMessage("You can only select 2 markers");
                                     const timer = setTimeout(() => {
