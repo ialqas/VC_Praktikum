@@ -44,10 +44,12 @@ function FirstStep({setStep, setCoords}: {setStep: Function, setCoords: Function
                 <div className={resp[0] == "x" ? "hidden" : ""}>Coordinates: {resp[0]}, {resp[1]}</div>
                 <div className={resp[0] == "x" ? "" : "hidden"}>Address not found, need manual approach</div>
             </div>
-            <div className="flex gap-4">
-                <button className="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-800 text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-orange-600 before:duration-500 before:ease-out hover:shadow-orange-600 hover:before:h-56 hover:before:w-56" onClick={() => { setStep(2)}}>
-                <span className="relative z-10">Next Step</span>
-                </button>
+            <div className={resp.length == 0 ? " flex gap-4 hidden": "flex gap-4"}> 
+                <div className={resp[0] == "x" ? "hidden" : ""}>
+                    <button className="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-800 text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-orange-600 before:duration-500 before:ease-out hover:shadow-orange-600 hover:before:h-56 hover:before:w-56" onClick={() => { setStep(2)}}>
+                        <span className="relative z-10">Next Step</span>
+                    </button>
+                </div>
             </div>
 
         </div>
@@ -55,3 +57,15 @@ function FirstStep({setStep, setCoords}: {setStep: Function, setCoords: Function
 }
 
 export default FirstStep;
+
+/*
+
+<div className="flex gap-4"> 
+                <div className={resp.length == 0 ? "hidden": "flex gap-4"}> 
+                    <button className="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-800 text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-orange-600 before:duration-500 before:ease-out hover:shadow-orange-600 hover:before:h-56 hover:before:w-56" onClick={() => { setStep(2)}}>
+                        <span className="relative z-10">Next Step</span>
+                    </button>
+                </div>
+            </div>
+
+*/
