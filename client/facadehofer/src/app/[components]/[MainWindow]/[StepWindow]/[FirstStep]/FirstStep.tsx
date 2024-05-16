@@ -42,7 +42,7 @@ function FirstStep({setStep, setCoords}: {setStep: Function, setCoords: Function
             </div>
             <div className={resp.length == 0 ? "flex flex-row items-center space-x-6 hidden" : "flex flex-row items-center space-x-6"}>
                 <div className={resp[0] == "x" ? "hidden" : ""}>Coordinates: {resp[0]}, {resp[1]}</div>
-                <div className={resp[0] == "x" ? "" : "hidden"}>Address not found, need manual approach</div>
+                <div className={resp[0] == "x" ? "" : "hidden"}><div className="text-red-600">Address not found, need manual approach</div></div>
             </div>
             <div className={resp.length == 0 ? " flex gap-4 hidden": "flex gap-4"}> 
                 <div className={resp[0] == "x" ? "hidden" : ""}>
