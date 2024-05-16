@@ -28,7 +28,7 @@ function ThirdStep({setStep, selectedMarkers, houseWidth, setHouseWidth}: {setSt
                 }})
             });
             const data = await response.json();
-            setHouseWidth(data.width);
+            setHouseWidth(data.width); //TODO: evtl Api-Call und Calculation wo anders hinschieben, damit der Foto-Hochlad-Component nicht unnötig re-rendered wird
         })();
     }, []);
 
