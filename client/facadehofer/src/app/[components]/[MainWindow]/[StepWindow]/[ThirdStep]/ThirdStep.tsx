@@ -36,7 +36,7 @@ function ThirdStep({setStep, selectedMarkers, houseWidth, setHouseWidth}: {setSt
                 <p>House width: {houseWidth} Meter (muss man hier nicht anzeigen, aber der Wert ist da)</p>
             </div>
             <div className="flex flex-gap-4 justify-center space-y-6">
-                <PicUploader />
+                <PicUploader houseWidth={houseWidth}/>
             </div>
         </div>
     );
