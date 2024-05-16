@@ -1,11 +1,6 @@
 import { useState , useEffect } from 'react';
+import PicUploader from './[PicUploader]/PicUploader';
 
-async function requestData(name: string, number: number, setResp: Function) {
-    const response = await fetch("http://localhost:8080/api/third?name=" + name + "&number=" + number);
-    const data = await response.json();
-    setResp([data.name, data.number]);
-
-}
 
 function ThirdStep({setStep, selectedMarkers, houseWidth, setHouseWidth}: {setStep: Function, selectedMarkers: string[][], houseWidth: number, setHouseWidth: Function}) {
 
@@ -35,10 +30,15 @@ function ThirdStep({setStep, selectedMarkers, houseWidth, setHouseWidth}: {setSt
 
 
     return (
+        <div>
             <div className="flex flex-col justify-center space-y-6">
                 <p>Upload Photo here</p>
                 <p>House width: {houseWidth} Meter (muss man hier nicht anzeigen, aber der Wert ist da)</p>
             </div>
+            <div className="flex flex-gap-4 justify-center space-y-6">
+                <PicUploader />
+            </div>
+        </div>
     );
 }
 

@@ -44,8 +44,8 @@ function SecondStep({setStep, coords, selectedMarkers, setSelectedMarkers}: {set
             <div className="flex flex-row items-center space-x-6">
                 <MapContainer center={[Number(coords[0]), Number(coords[1])]} zoom={20} style={{height: "600px", width: "800px"}}>
                 <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' maxNativeZoom={19} maxZoom={23} url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-                {markers.map((marker: any) => {
-                    return <Marker position={marker.geocode} icon={selectedMarkers.includes(marker.geocode) ? customIconClicked : customIcon} eventHandlers={{
+                {markers.map((marker: any, index: number) => {
+                    return <Marker position={marker.geocode} key={index} icon={selectedMarkers.includes(marker.geocode) ? customIconClicked : customIcon} eventHandlers={{
                         click: (e) => {
                             if(selectedMarkers.includes(marker.geocode)) { //marker selected
                                 setSelectedMarkers(selectedMarkers.filter((item) => item.toString() !== marker.geocode.toString())); //remove marker from selectedMarkers

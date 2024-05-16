@@ -1,24 +1,13 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import osm_nominatim_requests
 import geopy_requests
+import base64
+
 #app instance
 app = Flask(__name__)
 CORS(app)
-
-@app.route('/api/home', methods=["GET"])
-def return_home():
-    return jsonify({"message": "API here, yes i do"})
-
-@app.route('/api/second', methods=["GET"])
-def return_second():
-    return jsonify({"message": "Hey, that worked!"})
-
-@app.route('/api/third', methods=["GET"])
-def return_third():
-    name = request.args.get('name')
-    number = int(request.args.get('number'))
-    return jsonify({"name": name, "number": number*2})
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/api/address/coordinates", methods=["POST"])
 def return_coordinates():
@@ -44,6 +33,12 @@ def return_house_width():
     marker2 = (marker_2["lat"], marker_2["lon"])
     width = float("%.2f"%geopy_requests.calculate_distance(marker1, marker2))
     return jsonify({"width": width})
+
+@app.route("/api/picture/receive", methods=["POST"])
+def receive_picture():
+    b64 = request.json.get('picture')
+    house_width = request.json.get('houseWidth')
+    return jsonify({"message": "Picture received"})
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080) # remove debug=True for production, keep for development
