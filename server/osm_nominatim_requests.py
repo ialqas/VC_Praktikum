@@ -3,8 +3,8 @@ import json
 import overpy
 from typing import Tuple, List, Dict
 
-def get_location_by_address(street: str, housenumber: str, postal_code: str, city: str) -> Tuple[str, str]:
-    url = f"https://nominatim.openstreetmap.org/search?street={street} {housenumber}&city={city}&postalcode={postal_code}&format=jsonv2"
+def get_location_by_address(street: str, housenumber: str, postal_code: str) -> Tuple[str, str]:
+    url = f"https://nominatim.openstreetmap.org/search?street={street} {housenumber}&postalcode={postal_code}&format=jsonv2"
     headers = {
         "User-Agent": "TU Darmstadt Fraunhofer VC practical lesson 2024"
     }

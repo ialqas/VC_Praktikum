@@ -1,17 +1,20 @@
-import FirstStep from "./[FirstStep]/FirstStep";
-import SecondStep from "./[SecondStep]/SecondStep";
-import ThirdStep from "./[ThirdStep]/ThirdStep";
+import AddressStep from "./[AddressStep]/AddressStep";
+import PicUploadStep from "./[PicUploadStep]/PicUploadStep";
+import MapStep from "./[MapStep]/MapStep";
+import CalculationStep from "./[CalculationStep]/CalculationStep";
 import { use, useState } from "react";
 
 function stepWindow({step, setStep}: {step: number, setStep: Function}) {
-    const [coords, setCoords] = useState(["",""]);
+    const [coords, setCoords] = useState(["x", "x"]);
     const [selectedMarkers, setSelectedMarkers] = useState([]);
     const [houseWidth, setHouseWidth] = useState(0);
+    const [picture, setPicture] = useState("");
     switch(step) {
-        case 1: return <FirstStep setStep={setStep} setCoords={setCoords}/>;
-        case 2: return <SecondStep setStep={setStep} coords={coords} selectedMarkers={selectedMarkers} setSelectedMarkers={setSelectedMarkers}/>;
-        case 3: return <ThirdStep setStep={setStep} selectedMarkers={selectedMarkers} houseWidth={houseWidth} setHouseWidth={setHouseWidth}/>;
-        case 4: return <p>Done</p>;
+        case 1: return <PicUploadStep setStep={setStep} coords={coords} setCoords={setCoords} setPicture={setPicture}/>;
+        case 2: return <AddressStep setStep={setStep} setCoords={setCoords}/>;
+        case 3: return <MapStep setStep={setStep} coords={coords} selectedMarkers={selectedMarkers} setSelectedMarkers={setSelectedMarkers}/>;
+        case 4: return <CalculationStep setStep={setStep} picture={picture} houseWidth={houseWidth} setHouseWidth={setHouseWidth}/>;
+        case 5: return <p>Done</p>;
         default: return (
         <div className="flex flex-col justify-center items-center space-y-6">
          <p>Welcome to the website</p>

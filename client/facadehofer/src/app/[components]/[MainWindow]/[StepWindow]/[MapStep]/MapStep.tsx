@@ -40,7 +40,7 @@ function SecondStep({setStep, coords, selectedMarkers, setSelectedMarkers}: {set
 
     return (
         <div className="flex flex-col items-center">
-            <h1>Second Step, define which Hauswand you fotografiert hast</h1>
+            <h1>Define which Hauswand you fotografiert hast</h1>
             <div className="flex flex-row items-center space-x-6">
                 <MapContainer center={[Number(coords[0]), Number(coords[1])]} zoom={20} style={{height: "600px", width: "800px"}}>
                 <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' maxNativeZoom={19} maxZoom={23} url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
@@ -69,11 +69,11 @@ function SecondStep({setStep, coords, selectedMarkers, setSelectedMarkers}: {set
             {errorMessage != "" ? <p>{errorMessage}</p> : ""}
             <div className="flex gap-4">
                 {markersValid ?
-                <button className="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-800 text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-orange-600 before:duration-500 before:ease-out hover:shadow-orange-600 hover:before:h-56 hover:before:w-56" onClick={() => { setStep(5)}}>
-                <span className="relative z-10">Finalise Markers</span>
+                <button className="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-800 text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-orange-600 before:duration-500 before:ease-out hover:shadow-orange-600 hover:before:h-56 hover:before:w-56" onClick={() => { setStep(4)}}>
+                <span className="relative z-10">Finalize Markers</span>
                 </button>
-                : <button disabled={true} className="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-400 cursor-not-allowed opacity-60 shadow-2xl" onClick={() => { setStep(3)}}>
-                <span className="relative z-10">Finalise Markers</span>
+                : <button disabled={true} className="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-400 cursor-not-allowed opacity-60 shadow-2xl">
+                <span className="relative z-10">Finalize Markers</span>
                 </button>
                 }
                 

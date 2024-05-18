@@ -11,11 +11,10 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/api/address/coordinates", methods=["POST"])
 def return_coordinates():
-    city = request.json.get('city')
     street = request.json.get('street')
     number = request.json.get('housenumber')
     postal_code = request.json.get('postalCode')
-    coordinates = osm_nominatim_requests.get_location_by_address(street, number, postal_code, city)
+    coordinates = osm_nominatim_requests.get_location_by_address(street, number, postal_code)
     return jsonify({"lat": coordinates[0], "lon": coordinates[1]})
 
 @app.route("/api/address/nearbynodes", methods=["POST"])

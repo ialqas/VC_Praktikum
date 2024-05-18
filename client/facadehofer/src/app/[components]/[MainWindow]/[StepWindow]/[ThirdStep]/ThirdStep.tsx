@@ -1,5 +1,5 @@
 import { useState , useEffect } from 'react';
-import PicUploader from './[PicUploader]/PicUploader';
+import PicUploader from '../[PicUploadStep]/[PicUploader]/PicUploader';
 
 
 function ThirdStep({setStep, selectedMarkers, houseWidth, setHouseWidth}: {setStep: Function, selectedMarkers: string[][], houseWidth: number, setHouseWidth: Function}) {
