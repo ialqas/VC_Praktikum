@@ -1,10 +1,11 @@
 
 
-function calculationStep({setStep, picture, houseWidth, setHouseWidth}: {setStep: Function, picture: String, houseWidth: number, setHouseWidth: Function}) {
+function calculationStep({setStep, picture, houseWidth}: {setStep: Function, picture: String, houseWidth: number}) {
 
     return (
         <div>
             <h1>Calculation Step</h1>
+            <p>{houseWidth}</p>
         </div>
     )
 }

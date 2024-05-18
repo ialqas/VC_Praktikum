@@ -12,8 +12,8 @@ function stepWindow({step, setStep}: {step: number, setStep: Function}) {
     switch(step) {
         case 1: return <PicUploadStep setStep={setStep} coords={coords} setCoords={setCoords} setPicture={setPicture}/>;
         case 2: return <AddressStep setStep={setStep} setCoords={setCoords}/>;
-        case 3: return <MapStep setStep={setStep} coords={coords} selectedMarkers={selectedMarkers} setSelectedMarkers={setSelectedMarkers}/>;
-        case 4: return <CalculationStep setStep={setStep} picture={picture} houseWidth={houseWidth} setHouseWidth={setHouseWidth}/>;
+        case 3: return <MapStep setStep={setStep} coords={coords} selectedMarkers={selectedMarkers} setSelectedMarkers={setSelectedMarkers} setHouseWidth={setHouseWidth}/>;
+        case 4: return <CalculationStep setStep={setStep} picture={picture} houseWidth={houseWidth}/>;
         case 5: return <p>Done</p>;
         default: return (
         <div className="flex flex-col justify-center items-center space-y-6">

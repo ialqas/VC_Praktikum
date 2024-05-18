@@ -6,9 +6,10 @@ import { Icon } from "leaflet";
 
 //TODO: useEffect mit leerem Array und dann von OSM die Koordinaten aller Eckpunkte der Hauswände holen
 
-function SecondStep({setStep, coords, selectedMarkers, setSelectedMarkers}: {setStep: Function, coords: string[], selectedMarkers: string[][], setSelectedMarkers: Function}) {
+function SecondStep({setStep, coords, selectedMarkers, setSelectedMarkers, setHouseWidth}: {setStep: Function, coords: string[], selectedMarkers: string[][], setSelectedMarkers: Function, setHouseWidth: Function}) {
     const [markers, setMarkers] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
+    const [houseRequest, setHouseRequest] = useState<Promise<Response> | null>(null);
     
     const customIcon = new Icon({
         iconUrl: "https://uxwing.com/wp-content/themes/uxwing/download/signs-and-symbols/red-circle-icon.png",
@@ -19,6 +20,15 @@ function SecondStep({setStep, coords, selectedMarkers, setSelectedMarkers}: {set
         iconUrl: "https://uxwing.com/wp-content/themes/uxwing/download/signs-and-symbols/green-circle-icon.png",
         iconSize: [18, 18]
     });
+
+    async function stepButtonHandler() {
+        if(houseRequest) {
+            const received = await houseRequest;
+            const data = await received.json();
+            setHouseWidth(data.width);
+            setStep(4);
+        }
+    }
 
 
     useEffect(() => {
@@ -52,6 +62,23 @@ function SecondStep({setStep, coords, selectedMarkers, setSelectedMarkers}: {set
                             } else { //marker not selected
                                 if(selectedMarkers.length < 2) { //less than 2 markers selected
                                     setSelectedMarkers([...selectedMarkers, marker.geocode]); //add marker to selectedMarkers
+                                    if(selectedMarkers.length == 1) { //means we just added the 2nd one
+                                        setHouseRequest(fetch("http://localhost:8080/api/address/housewidth", {
+                                            method: "POST",
+                                            headers: {
+                                                "Accept": "application/json",
+                                                "Content-Type": "application/json"                  
+                                            },
+                                            body: JSON.stringify({"marker1": {
+                                                "lat": selectedMarkers[0][0],
+                                                "lon": selectedMarkers[0][1]
+                                            },
+                                            "marker2": {
+                                                "lat": marker.geocode[0],
+                                                "lon": marker.geocode[1]
+                                            }})
+                                        }));
+                                    }
                                 } else { //2 markers selected
                                     setErrorMessage("You can only select 2 markers");
                                     const timer = setTimeout(() => {
@@ -69,7 +96,7 @@ function SecondStep({setStep, coords, selectedMarkers, setSelectedMarkers}: {set
             {errorMessage != "" ? <p>{errorMessage}</p> : ""}
             <div className="flex gap-4">
                 {markersValid ?
-                <button className="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-800 text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-orange-600 before:duration-500 before:ease-out hover:shadow-orange-600 hover:before:h-56 hover:before:w-56" onClick={() => { setStep(4)}}>
+                <button className="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-800 text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-orange-600 before:duration-500 before:ease-out hover:shadow-orange-600 hover:before:h-56 hover:before:w-56" onClick={() => {stepButtonHandler()}}>
                 <span className="relative z-10">Finalize Markers</span>
                 </button>
                 : <button disabled={true} className="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-400 cursor-not-allowed opacity-60 shadow-2xl">
