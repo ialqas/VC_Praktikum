@@ -19,7 +19,7 @@ def get_location_by_address(street: str, housenumber: str, postal_code: str) -> 
 
 def get_nearby_nodes(lat: str, lon: str) -> List[Dict[str, List[float]]]:
     api = overpy.Overpass()
-    result = api.query(f"""[out:json];node(around:75.0, {lat}, {lon});way(bn)->.wy;node._(w.wy);out;""")
+    result = api.query(f"""[out:json];node(around:75.0, {lat}, {lon});way["building"](bn)->.wy;node._(w.wy);out;""")
     markers = []
     for node in result.nodes:
         marker = {}
