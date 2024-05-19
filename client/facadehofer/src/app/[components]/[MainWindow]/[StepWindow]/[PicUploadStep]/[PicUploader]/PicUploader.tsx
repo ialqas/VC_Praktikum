@@ -10,14 +10,13 @@ async function getExif(file: File) {
 
     
     if(latitude && longitude) {
-        console.log("GETEXIF HERE", latitude, longitude);
         return [String(latitude), String(longitude)];
     } else {
-        return ["x","x"];
+        return ["",""];
     }
     } catch (error) {
         console.log(error);
-        return ["x","x"];
+        return ["",""];
     }
 }
 
@@ -33,10 +32,7 @@ function PicUploader({setStep, coords, setCoords, setPicture}: {setStep: Functio
         if(file) {
             const getExifData = async () => {
                 var results = await getExif(file);
-                console.log("IN USEFFECT, JUST USED GETEXIF", results)
-                console.log("TYPES:" , typeof(results[0]), typeof(results[1]));
                 setCoords([results[0], results[1]]);
-                console.log("AFTER SETCOORDS", coords)
             };
             getExifData();
             const reader = new FileReader();

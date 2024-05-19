@@ -5,13 +5,13 @@ import CalculationStep from "./[CalculationStep]/CalculationStep";
 import { use, useState } from "react";
 
 function stepWindow({step, setStep}: {step: number, setStep: Function}) {
-    const [coords, setCoords] = useState(["x", "x"]);
+    const [coords, setCoords] = useState(["", ""]);
     const [selectedMarkers, setSelectedMarkers] = useState([]);
     const [houseWidth, setHouseWidth] = useState(0);
     const [picture, setPicture] = useState("");
     switch(step) {
         case 1: return <PicUploadStep setStep={setStep} coords={coords} setCoords={setCoords} setPicture={setPicture}/>;
-        case 2: return <AddressStep setStep={setStep} setCoords={setCoords}/>;
+        case 2: return <AddressStep setStep={setStep} coords={coords} setCoords={setCoords}/>;
         case 3: return <MapStep setStep={setStep} coords={coords} selectedMarkers={selectedMarkers} setSelectedMarkers={setSelectedMarkers} setHouseWidth={setHouseWidth}/>;
         case 4: return <CalculationStep setStep={setStep} picture={picture} houseWidth={houseWidth}/>;
         case 5: return <p>Done</p>;
