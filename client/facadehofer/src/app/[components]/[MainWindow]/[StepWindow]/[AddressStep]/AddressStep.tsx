@@ -25,7 +25,7 @@ function AddressStep({setStep, coords, setCoords}: {setStep: Function, coords:St
     const [street, setStreet] = useState("Wenckstraße");
     const [housenumber, setHousenumber] = useState("13");
     const [postalCode, setPostalCode] = useState("64295");
-   // coords: empty string -> not yet fetched, "x" -> not found, [lat, lon] -> found
+   // coords: 
 
     //TODO USESTATE INITIAL VALUES + INPUT VALUES ANPASSEN
 

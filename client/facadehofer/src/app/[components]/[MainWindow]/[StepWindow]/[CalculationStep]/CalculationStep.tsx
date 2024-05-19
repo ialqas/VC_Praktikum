@@ -6,7 +6,7 @@ function calculationStep({setStep, picture, houseWidth}: {setStep: Function, pic
         <div className="flex flex-col justify-center items-center">
             <h1>Calculation Step</h1>
             <p>{houseWidth}</p>
-            <p>{picture}</p>
+            <p>{picture.length > 54 ? picture.slice(0, 53) + '...' : picture}</p>
         </div>
     )
 }

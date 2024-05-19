@@ -5,7 +5,7 @@ import CalculationStep from "./[CalculationStep]/CalculationStep";
 import { use, useState } from "react";
 
 function stepWindow({step, setStep}: {step: number, setStep: Function}) {
-    const [coords, setCoords] = useState(["", ""]);
+    const [coords, setCoords] = useState(["", ""]); //empty string -> couldnt be found in exif, "x" -> not found because of invalid address, [lat, lon] -> found either in exif or via address
     const [selectedMarkers, setSelectedMarkers] = useState([]);
     const [houseWidth, setHouseWidth] = useState(0);
     const [picture, setPicture] = useState("");
